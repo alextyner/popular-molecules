@@ -55,6 +55,7 @@ public class FileReaderWriter {
     public static void writeFile(String path, List<Chemical> chemicals) throws IOException {
         try (FileOutputStream fos = new FileOutputStream(path);
                 Writer w = new OutputStreamWriter(fos, "UTF8")) {
+            w.write("\"Chemical Name\", \"Average Monthly Wikipedia Views in 2018\"\n");
             for (Chemical c : chemicals) {
                 w.write(c.getName());
                 w.write(',');
