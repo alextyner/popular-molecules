@@ -40,7 +40,7 @@ public class PopularMoleculesUI {
                 + String.format("%-8s", "[Info]")
                 + " Wikipedia page views for each chemical. Each of the 12 months are averaged to determine the chemical's \n"
                 + String.format("%-8s", "[Info]")
-                + " popularity score. The chemicals will be sorted by popularity and the results written to an output file (CSV) of your choice.\n");
+                + " popularity score. The chemicals will be sorted by popularity and the results written to an output file (TSV) of your choice.\n");
         System.out.println(String.format("%-8s", "[Info]")
                 + " Each line of the input file is expected to be of the following format: ");
         System.out.println(String.format("%-8s", "[Info]") + " \t{Chemical Name}\\t{Tag}\\n");

@@ -56,11 +56,11 @@ public class FileReaderWriter {
     public static void writeFile(String path, List<Chemical> chemicals) throws IOException {
         try (FileOutputStream fos = new FileOutputStream(path);
                 Writer w = new OutputStreamWriter(fos, "UTF8")) {
-            w.write("\"Chemical Name\", \"Average Monthly Wikipedia Views ("
-                    + PopularMoleculesUI.SAMPLE_YEAR + ")\"\n");
+            w.write("Chemical Name\tAverage Monthly Wikipedia Views ("
+                    + PopularMoleculesUI.SAMPLE_YEAR + ")\n");
             for (Chemical c : chemicals) {
                 w.write(c.getName());
-                w.write(',');
+                w.write('\t');
                 w.write(Integer.toString(c.getViews()));
                 w.write('\n');
             }
