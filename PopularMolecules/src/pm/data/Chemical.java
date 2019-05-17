@@ -66,12 +66,12 @@ public class Chemical implements Comparable<Chemical> {
      * Compares this chemical to another by their page views.
      * 
      * @param o other chemical
-     * @return negative number if this chemical comes before the other, zero if they
-     *         are to be sorted the same, positive number of this chemical comes
+     * @return positive number if this chemical comes before the other, zero if they
+     *         are to be sorted the same, negative number if this chemical comes
      *         after the other
      */
     @Override
     public int compareTo(Chemical o) {
-        return this.getViews() - o.getViews();
+        return o.getViews() - this.getViews();
     }
 }

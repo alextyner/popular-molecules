@@ -21,11 +21,11 @@ import pm.data.Chemical;
  * 
  * @author Alex Tyner
  */
-public class FileReader {
+public class FileReaderWriter {
 
     /**
      * Reads chemical names from a tab-delimited file and returns them in an
-     * arraylist.
+     * ArrayList.
      * 
      * @param path path to the file
      * @return array list of chemical names
@@ -35,9 +35,11 @@ public class FileReader {
         List<Chemical> chemicals = new ArrayList<Chemical>();
         try (Scanner scan = new Scanner(new FileInputStream(path), "UTF8")) {
             while (scan.hasNextLine()) {
-                String[] chemicalData = scan.nextLine().split("\t"); // split [name]\t[data] into [name], [data]
+                String[] chemicalData = scan.nextLine().split("\t"); // split [name]\t[data] into
+                                                                     // [name], [data]
                 if (chemicalData.length > 0)
-                    chemicals.add(new Chemical(chemicalData[0])); // add a chemical with name [name] to the list
+                    chemicals.add(new Chemical(chemicalData[0])); // add a chemical with name
+                                                                  // [name] to the list
             }
         }
         return chemicals;
@@ -46,18 +48,17 @@ public class FileReader {
     /**
      * Writes chemical names and their numbers of Wikipedia page views to a file.
      * 
-     * @param path        path to the file
-     * @param frequencies map of chemical names to their frequencies
+     * @param path      path to the file
+     * @param chemicals list of chemicals with names and page view values
      * @throws IOException if no write permissions or UTF-8 not supported
      */
-    public static void writeFile(String path, Map<String, Integer> frequencies)
-            throws IOException {
+    public static void writeFile(String path, List<Chemical> chemicals) throws IOException {
         try (FileOutputStream fos = new FileOutputStream(path);
                 Writer w = new OutputStreamWriter(fos, "UTF8")) {
-            for (Entry<String, Integer> chemical : frequencies.entrySet()) {
-                w.write(chemical.getKey());
-                w.write('\t');
-                w.write(chemical.getValue());
+            for (Chemical c : chemicals) {
+                w.write(c.getName());
+                w.write(',');
+                w.write(Integer.toString(c.getViews()));
                 w.write('\n');
             }
         }

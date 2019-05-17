@@ -3,7 +3,6 @@ package pm.util;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
@@ -29,7 +28,7 @@ public class WebQuery {
      * @throws JsonSyntaxException 
      * @throws JsonIOException if IO error
      */
-    public static JsonObject getJSONViewsSummary(String articleName) throws JsonIOException, JsonSyntaxException, IOException {
+    public static JsonObject getJSONSummary(String articleName) throws JsonIOException, JsonSyntaxException, IOException {
         String url = formURL(articleName);
         
         JsonParser parser = new JsonParser();
@@ -41,7 +40,7 @@ public class WebQuery {
      * Queries a URL, returning the response as an {@link InputStream}.
      * 
      * @param url URL to query as a String
-     * @return the data recieved from the URL as an InputStream
+     * @return the data received from the URL as an InputStream
      * @throws IOException on malformed URL; on error opening HTTP connection
      */
     private static InputStream getWebData(String surl) throws IOException {
