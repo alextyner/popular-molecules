@@ -11,6 +11,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 
+import pm.ui.PopularMoleculesUI;
+
 /**
  * Performs HTTP requests to retrieve page view counts for Wikipedia articles.
  * Turns the JSON received into Java objects.
@@ -24,15 +26,16 @@ public class WebQuery {
      * 
      * @param articleName name of the article
      * @return views data as JSON object
-     * @throws IOException if IO error
-     * @throws JsonSyntaxException 
-     * @throws JsonIOException if IO error
+     * @throws IOException         if IO error
+     * @throws JsonSyntaxException
+     * @throws JsonIOException     if IO error
      */
-    public static JsonObject getJSONSummary(String articleName) throws JsonIOException, JsonSyntaxException, IOException {
+    public static JsonObject getJSONSummary(String articleName)
+            throws JsonIOException, JsonSyntaxException, IOException {
         String url = formURL(articleName);
-        
+
         JsonParser parser = new JsonParser();
-        
+
         return parser.parse(new InputStreamReader(getWebData(url))).getAsJsonObject();
     }
 
@@ -60,7 +63,8 @@ public class WebQuery {
     private static String formURL(String articleName) {
         return new StringBuilder(
                 "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/all-agents/")
-                        .append(articleName.replace(' ', '_'))
-                        .append("/monthly/2018010100/2018123100").toString();
+                        .append(articleName.replace(' ', '_')).append("/monthly/")
+                        .append(PopularMoleculesUI.SAMPLE_YEAR).append("010100/")
+                        .append(PopularMoleculesUI.SAMPLE_YEAR).append("123100").toString();
     }
 }

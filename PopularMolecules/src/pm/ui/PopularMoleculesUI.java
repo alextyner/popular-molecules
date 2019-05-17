@@ -25,6 +25,9 @@ import pm.util.WebQuery;
  */
 public class PopularMoleculesUI {
 
+    /** Year to sample monthly page views from. */
+    public static final String SAMPLE_YEAR = "2018";
+
     /**
      * Starts the program.
      * 
@@ -68,8 +71,8 @@ public class PopularMoleculesUI {
         System.out.println(String.format("%-8s", "[Status]") + " Sorting results...");
         Collections.sort(input);
         System.out.println(String.format("%-8s", "[Info]") + " Sorting complete.");
-        System.out.print(
-                String.format("%-8s", "[Input]") + " Enter the path to your output file: ");
+        System.out
+                .print(String.format("%-8s", "[Input]") + " Enter the path to your output file: ");
 
         String outputPath = get.next();
         boolean failed = true;
